@@ -12,82 +12,66 @@
 </head>
 
 <body>
-
-    <style>
-    body {
-        padding: 15px;
-    }
-
-    table,
-    th,
-    td {
-        border: 1px solid black;
-        border-collapse: collapse;
-    }
-
-
-    th,
-    td {
-        padding: 5px;
-    }
-
-    tr:hover {
-        background-color: #D6EEEE;
-    }
-
-    tr {
-        border-bottom: 1px solid #ddd;
-    }
-    </style>
-
     <!--Nav bar section  -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="/">sasto bazzar </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
-
-                <li class="nav-item">
-                    <a class="nav-link" href="product/create">Add new product</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="product/">View products</a>
-                </li>
-
-            </ul>
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">S.Bazzar</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/product/create">create Product</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/product/edit">edit Product</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/product">view Product</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Delete Product</a>
+                    </li>
+            </div>
         </div>
     </nav>
 
-    <h1>products</h1>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-9">
+                <h1>products</h1>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>S.N </th>
+                            <th>Name</th>
+                            <th>Qty</th>
+                            <th>Price</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
 
-    <p>lists of product</p>
-
-    <table boarder="1">
-        <thead>
-            <th>
-                <tr>S.N</tr>
-                <tr>Name</tr>
-                <tr>Qty</tr>
-                <tr>Price</tr>
-                <tr>Description</tr>
-            </th>
-        </thead>
-
-        <tbody>
-            @foreach($products as $key=> $product)
-            <tr>
-                <td>{{$key + 1 }}</td>
-                <td>{{$product->name}}</td>
-                <td>{{$product->qty}}</td>
-                <td>{{$product->price}}</td>
-                <td>{{$product->description}}</td>
-            </tr>
-            @endforeach
-        </tbody>
-    </table>
+                    <tbody>
+                        @foreach($products as $key=> $product)
+                        <tr>
+                            <td>{{$key + 1 }}</td>
+                            <td>{{$product->name}}</td>
+                            <td>{{$product->qty}}</td>
+                            <td>{{$product->price}}</td>
+                            <td>{{$product->description}}</td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 
     <div>
         <a href="http://127.0.0.1:8000/product/create" class="btn btn-primary stretched-link">Add new product</a>

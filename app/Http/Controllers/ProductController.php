@@ -36,11 +36,13 @@ class ProductController extends Controller
     }
 
     // edit existing data
-    public function edit(Request $request){
-
+    public function edit($id){
+        // Product::findOrFail($id);
      
-        return redirect()->route('product.edit');
+        return view('Products.edit', compact('products'));
     }
+
+    
 
     // update existing data
     public function update(Request $request){
