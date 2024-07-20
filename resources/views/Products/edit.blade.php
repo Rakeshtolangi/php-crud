@@ -60,7 +60,7 @@
         </div>
 
         <div>
-            <label for="">Quatity</label>
+            <label for="">Quantity</label>
             <input type=" qty" name="qty" placeholder="qty" value="{{$product->name}}" />
         </div>
 
