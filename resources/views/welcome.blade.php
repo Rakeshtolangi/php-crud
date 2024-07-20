@@ -52,12 +52,20 @@
         <p class="lead">This is an ecommerce platform where you can find every products you are searching
             for.
         </p>
-        <hr class="my-4">
-        <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
-        <a class="btn btn-primary btn-lg" href="#" role="button">learn more</a>
-        <a class="btn btn-primary btn-lg" href="http://127.0.0.1:8000/product" role="button">view all products</a>
     </div>
 
+
+    <!-- card section -->
+
+    <div class="card" style="width: 18rem;">
+        <img src="..." class="card-img-top" alt="...">
+        <div class="card-body">
+            <h5 class="card-title">JEDEL Keyboard</h5>
+            <p class="card-text">High quality keyboard with premium look with comfortable and soft typing makes you feel
+                better while coding.</p>
+            <a href="#" class="btn btn-primary">Add keyboard</a>
+        </div>
+    </div>
 
     <!-- Option 1: Bootstrap Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"

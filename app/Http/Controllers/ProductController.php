@@ -16,12 +16,18 @@ class ProductController extends Controller
     }
 
 
-    // create data
+    
+
+    // show the form for creating new resource
     public function create(){
         return view('products.create');
     }
 
-    // store data
+
+
+    
+    
+    // Store a newly created resouce in storage.
     public function store(Request $request){
         $request->validate([
             'name' => 'required',
@@ -31,35 +37,53 @@ class ProductController extends Controller
         ]);
     
         Product::create($request->all());
+        
         return redirect()->route('product.create')
                         ->with('success','Product created successfully.');
     }
 
-    // edit existing data
+    
+
+    // Display the specified resouce
+    public function show($id){
+        $product = Product::findOrFail($id);
+        return view('products.show', compact('product'));
+    }
+
+    
+    
+    // Show the form for editing the specified resource
     public function edit($id){
-        // Product::findOrFail($id);
-     
-        return view('Products.edit', compact('products'));
+        $product = Product::findOrFail($id);
+        return view('products.edit', compact('product'));
     }
 
     
 
-    // update existing data
-    public function update(Request $request){
-   
-        Product::update($request->all());
-        return redirect()->route('product.edit')
-                        ->with('success','Product edit successfully.');
+    // Update the specified resource in storage
+    public function update(Request $request, $id){
+        $request->validate([
+            'name' => 'required',
+            'price' => 'required',
+            'qty' => 'required',
+            'description' => 'nullable'
+        ]);
+
+        $product = Product::findOrFail($id);
+        $product->update($request->all());
+
+        return redirect()->route('product.index')->with('success','Product updated successfull!');
+        
     }
 
-    // delete data 
-    public function delete(Request $request){
-      
+        // Remove the specified resource from storage
+    public function destroy($id)
+        {
+            $product = Product::findOrFail($id);
+            $product->delete();
+
+            return redirect()->route('product.index')->with('success','Product deleted successfully!');
+        }
     
-        Product::delete($product);
-     
-        return redirect()->route('product.create')
-                        ->with('success','Product delete successfully.');
-    }
     
 }

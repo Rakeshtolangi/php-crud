@@ -8,7 +8,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
-    <title>Create product</title>
+    <title>edit product</title>
 </head>
 
 <body>
@@ -45,32 +45,33 @@
 
 
 
-    <h1> create the product</h1>
+    <h1> edit product</h1>
     @if ($message = Session::get('success'))
     <div class="alert alert-success">
         <p>{{ $message }}</p>
     </div>
     @endif
-    <form action="{{route('product.store')}}" method="post">
+    <form action="/product/{{$product->$id}}" method="post">
         @csrf
+        method('PUT')
         <div>
             <label for="">Name</label>
-            <input type="text" name="name" placeholder="name" />
+            <input type="text" name="name" placeholder="name" value="{{$product->name}}" />
         </div>
 
         <div>
             <label for="">Quatity</label>
-            <input type="qty" name="qty" placeholder="qty" />
+            <input type=" qty" name="qty" placeholder="qty" value="{{$product->name}}" />
         </div>
 
         <div>
             <label for="">Price</label>
-            <input type="text" name="price" placeholder="price" />
+            <input type="text" name="price" placeholder="price" value="{{$product->name}}" />
         </div>
 
         <div>
             <label for="">Description</label>
-            <input type="text" name="description" placeholder="Description" />
+            <input type="text" name="description" placeholder="Description" value="{{$product->name}}" />
         </div>
 
         <div>
