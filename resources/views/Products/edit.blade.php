@@ -4,16 +4,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- offline bootstrap link -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-
-    <title>edit product</title>
+    <title>Edit Product</title>
 </head>
 
 <body>
 
-    <!--Nav bar section  -->
+    <!-- Nav bar section -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
             <a class="navbar-brand" href="/">S.Bazzar</a>
@@ -28,63 +30,65 @@
                         <a class="nav-link active" aria-current="page" href="#">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/product/create">create Product</a>
+                        <a class="nav-link" href="/product/create">Create Product</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/product/edit">edit Product</a>
+                        <a class="nav-link" href="/product/edit">Edit Product</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/product">view Product</a>
+                        <a class="nav-link" href="/product">View Product</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Delete Product</a>
                     </li>
+                </ul>
             </div>
         </div>
     </nav>
 
+    <div class="container">
+        <div class="row">
+            <div class="col-md-9">
+                <h1>Edit the Product</h1>
 
+                @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+                @endif
 
-    <h1> edit product</h1>
-    @if ($message = Session::get('success'))
-    <div class="alert alert-success">
-        <p>{{ $message }}</p>
-    </div>
-    @endif
-    <form action="/product/{{$product->$id}}" method="post">
-        @csrf
-        method('PUT')
-        <div>
-            <label for="">Name</label>
-            <input type="text" name="name" placeholder="name" value="{{$product->name}}" />
-        </div>
+                <form action="{{ route('product.update', $product->id) }}" method="post">
+                    @csrf
+                    @method('PUT')
+                    <div class="form-floating mb-3">
+                        <input type="text" name="name" value="{{ $product->name }}" placeholder="name"
+                            class="form-control" id="floatingName">
+                        <label for="floatingName">Name</label>
+                    </div>
 
-        <div>
-            <label for="">Quantity</label>
-            <input type=" qty" name="qty" placeholder="qty" value="{{$product->name}}" />
-        </div>
+                    <div class="form-floating mb-3">
+                        <input type="number" name="qty" value="{{ $product->qty }}" placeholder="qty"
+                            class="form-control" id="floatingQty">
+                        <label for="floatingQty">Quantity</label>
+                    </div>
 
-        <div>
-            <label for="">Price</label>
-            <input type="text" name="price" placeholder="price" value="{{$product->name}}" />
-        </div>
+                    <div class="form-floating mb-3">
+                        <input type="number" step="0.01" name="price" value="{{ $product->price }}" placeholder="price"
+                            class="form-control" id="floatingPrice">
+                        <label for="floatingPrice">Price</label>
+                    </div>
 
-        <div>
-            <label for="">Description</label>
-            <input type="text" name="description" placeholder="Description" value="{{$product->name}}" />
-        </div>
+                    <div class="form-floating mb-3">
+                        <input type="text" name="description" value="{{ $product->description }}"
+                            placeholder="Description" class="form-control" id="floatingDescription">
+                        <label for="floatingDescription">Description</label>
+                    </div>
 
-        <div>
-            <input type="submit" value="Save a New Product" />
-        </div>
-    </form>
-
-
-
-    <!-- Option 1: Bootstrap Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
-    </script>
-</body>
-
-</html>
+                    <div class="mb-3">
+                        <input type="submit" value="Update Product" class="btn btn-primary" />
+                    </div>
+                </form </div>
